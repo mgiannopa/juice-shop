@@ -106,6 +106,13 @@ function loadHint (hint: ChallengeHint): HTMLElement {
   picture.style.marginRight = '8px'
   picture.src = '/assets/public/images/hackingInstructor.png'
 
+    // Function to sanitize HTML content
+  function sanitizeHtml(content: string): string {
+    const element = document.createElement('div')
+    element.innerText = content
+    return element.innerHTML
+  }
+
   const textBox = document.createElement('span')
   textBox.style.flexGrow = '2'
   textBox.innerHTML = snarkdown(hint.text)
