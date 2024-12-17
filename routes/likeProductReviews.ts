@@ -9,7 +9,7 @@ import { type Review } from '../data/types'
 import * as db from '../data/mongodb'
 import { challenges } from '../data/datacache'
 
-const security = require('../lib/insecurity')
+import security = require('../lib/insecurity')
 
 module.exports = function productReviews () {
   return (req: Request, res: Response) => {

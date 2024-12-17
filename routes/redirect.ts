@@ -8,7 +8,7 @@ import challengeUtils = require('../lib/challengeUtils')
 import { type Request, type Response, type NextFunction } from 'express'
 import { challenges } from '../data/datacache'
 
-const security = require('../lib/insecurity')
+import security = require('../lib/insecurity')
 
 module.exports = function performRedirect () {
   return ({ query }: Request, res: Response, next: NextFunction) => {
