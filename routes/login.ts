@@ -33,10 +33,12 @@ module.exports = function login () {
 
   return (req: Request, res: Response, next: NextFunction) => {
     verifyPreLoginChallenges(req) // vuln-code-snippet hide-line
+    const email = req.body.email || '';
+    const password = security.hash(req.body.password || '');
     models.sequelize.query(
-      'SELECT * FROM Users WHERE email = ? AND password = ? AND deletedAt IS NULL',
+      'SELECT * FROM Users WHERE email = :email AND password = :password AND deletedAt IS NULL',
       {
-        replacements: [req.body.email || '', security.hash(req.body.password || '')],
+        replacements: { email, password },
         model: UserModel,
         plain: true
       }

@@ -20,14 +20,25 @@ module.exports = function searchProducts () {
   return (req: Request, res: Response, next: NextFunction) => {
     let criteria: any = req.query.q === 'undefined' ? '' : req.query.q ?? ''
     criteria = (criteria.length <= 200) ? criteria : criteria.substring(0, 200)
-    
     // Sanitize criteria to prevent SQL injection
     criteria = criteria.replace(/[%_]/g, '\\$&')
-
     models.sequelize.query(
       'SELECT * FROM Products WHERE ((name LIKE :criteria OR description LIKE :criteria) AND deletedAt IS NULL) ORDER BY name',
       {
         replacements: { criteria: `%${criteria}%` },
+        model: ProductModel,
+        plain: false
+      }
+    ) // vuln-code-snippet vuln-line unionSqlInjectionChallenge dbSchemaChallenge
+      .then(([products]: any) => {
+        const dataString = JSON.stringify(products)
+        if (challengeUtils.notSolved(challenges.unionSqlInjectionChallenge)) { // vuln-code-snippet hide-start
+          let solved = true
+          UserModel.findAll().then(data => {
+            const users = utils.queryResultToJson(data)
+            if (users.data?.length) {
+              for (let i = 0; i < users.data.length; i++) {
+                solved = solved && utils.containsOrEscaped(dataString, users.data[i].email) && utils.contains(dataString, users.data[i].password)
         type: models.sequelize.QueryTypes.SELECT
       }
     ).then((products: any) => {
