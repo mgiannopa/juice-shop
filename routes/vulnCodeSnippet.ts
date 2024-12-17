@@ -20,8 +20,11 @@ interface VerdictRequestBody {
   selectedLines: number[]
   key: string
 }
+interface CustomError extends Error {
+  name: string
+}
 
-const setStatusCode = (error: any) => {
+const setStatusCode = (error: CustomError) => {
   switch (error.name) {
     case 'BrokenBoundary':
       return 422
