@@ -10,7 +10,7 @@ import { getCodeChallenges } from '../lib/codingChallenges'
 import * as accuracy from '../lib/accuracy'
 import * as utils from '../lib/utils'
 
-const challengeUtils = require('../lib/challengeUtils')
+import challengeUtils = require('../lib/challengeUtils')
 
 interface SnippetRequestBody {
   challenge: string

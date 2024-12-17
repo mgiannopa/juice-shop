@@ -8,7 +8,7 @@ import { type Request, type Response, type NextFunction } from 'express'
 import * as db from '../data/mongodb'
 import { challenges } from '../data/datacache'
 
-const security = require('../lib/insecurity')
+   security = require('../lib/insecurity')
 
 // vuln-code-snippet start noSqlReviewsChallenge forgedReviewChallenge
 module.exports = function productReviews () {

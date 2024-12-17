@@ -7,7 +7,7 @@ import challengeUtils = require('../lib/challengeUtils')
 import { type Request, type Response } from 'express'
 
 import security = require('../lib/insecurity')
-import cache = require('../data/datacache')
+import   cache = require('../data/datacache')
 const challenges = cache.challenges
 
 module.exports = function retrieveLoggedInUser () {
