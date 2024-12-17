@@ -32,7 +32,7 @@ import { AllHtmlEntities as Entities } from 'html-entities'
 import * as datacache from './datacache'
 import * as security from '../lib/insecurity'
 
-const replace = require('replace')
+import replace = require('replace')
 const entities = new Entities()
 
 export default async () => {

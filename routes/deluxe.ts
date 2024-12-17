@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { type Request, type Response, type NextFunction } from 'express'
+import { type Request, type Response } from 'express'
 import { UserModel } from '../models/user'
 import { WalletModel } from '../models/wallet'
 import { CardModel } from '../models/card'
@@ -11,10 +11,10 @@ import challengeUtils = require('../lib/challengeUtils')
 import * as utils from '../lib/utils'
 import { challenges } from '../data/datacache'
 
-const security = require('../lib/insecurity')
+import security = require('../lib/insecurity')
 
 module.exports.upgradeToDeluxe = function upgradeToDeluxe () {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response) => {
     try {
       const user = await UserModel.findOne({ where: { id: req.body.UserId, role: security.roles.customer } })
       if (user == null) {
@@ -57,7 +57,7 @@ module.exports.upgradeToDeluxe = function upgradeToDeluxe () {
 }
 
 module.exports.deluxeMembershipStatus = function deluxeMembershipStatus () {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response) => {
     if (security.isCustomer(req)) {
       res.status(200).json({ status: 'success', data: { membershipCost: 49 } })
     } else if (security.isDeluxe(req)) {
