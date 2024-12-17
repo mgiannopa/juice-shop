@@ -19,8 +19,8 @@ function captchas () {
     const firstOperator = operators[Math.floor((Math.random() * 3))]
     const secondOperator = operators[Math.floor((Math.random() * 3))]
 
-    const expression = firstTerm.toString() + firstOperator + secondTerm.toString() + secondOperator + thirdTerm.toString()
-    const answer = eval(expression).toString() // eslint-disable-line no-eval
+    const expression = `${firstTerm} ${firstOperator} ${secondTerm} ${secondOperator} ${thirdTerm}`
+    const answer = evaluateExpression(firstTerm, firstOperator, secondTerm, secondOperator, thirdTerm).toString()
 
     const captcha = {
       captchaId,
@@ -30,6 +30,24 @@ function captchas () {
     const captchaInstance = CaptchaModel.build(captcha)
     await captchaInstance.save()
     res.json(captcha)
+  }
+}
+
+function evaluateExpression(firstTerm: number, firstOperator: string, secondTerm: number, secondOperator: string, thirdTerm: number): number {
+  const firstResult = applyOperator(firstTerm, firstOperator, secondTerm)
+  return applyOperator(firstResult, secondOperator, thirdTerm)
+}
+
+function applyOperator(term1: number, operator: string, term2: number): number {
+  switch (operator) {
+    case '+':
+      return term1 + term2
+    case '-':
+      return term1 - term2
+    case '*':
+      return term1 * term2
+    default:
+      throw new Error('Invalid operator')
   }
 }
 
