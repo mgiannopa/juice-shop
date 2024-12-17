@@ -12,9 +12,9 @@ import challengeUtils = require('../lib/challengeUtils')
 import config from 'config'
 import * as utils from '../lib/utils'
 import { AllHtmlEntities as Entities } from 'html-entities'
-const security = require('../lib/insecurity')
-const pug = require('pug')
-const themes = require('../views/themes/themes').themes
+import security = require('../lib/insecurity')
+import pug = require('pug')
+import themes = require('../views/themes/themes').themes
 const entities = new Entities()
 
 module.exports = function getUserProfile () {
