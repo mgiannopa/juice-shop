@@ -11,8 +11,8 @@ import { UserModel } from '../models/user'
 import { challenges } from '../data/datacache'
 
 import challengeUtils = require('../lib/challengeUtils')
-const users = require('../data/datacache').users
-const security = require('../lib/insecurity')
+import users = require('../data/datacache').users
+import security = require('../lib/insecurity')
 
 module.exports = function resetPassword () {
   return ({ body, connection }: Request, res: Response, next: NextFunction) => {
