@@ -34,3 +34,5 @@ module.exports = function retrieveBasket () {
       })
   }
 }
+
+export default module.exports

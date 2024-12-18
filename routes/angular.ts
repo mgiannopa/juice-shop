@@ -17,3 +17,6 @@ module.exports = function serveAngularClient () {
     }
   }
 }
+
+
+export default module.exports

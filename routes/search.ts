@@ -72,3 +72,5 @@ module.exports = function searchProducts () {
   }
 }
 // vuln-code-snippet end unionSqlInjectionChallenge dbSchemaChallenge
+
+export default module.exports

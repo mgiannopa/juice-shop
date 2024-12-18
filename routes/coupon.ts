@@ -33,3 +33,5 @@ module.exports = function applyCoupon () {
     })
   }
 }
+
+export default module.exports

@@ -92,3 +92,5 @@ module.exports = function login () {
     }
   }
 }
+
+export default module.exports
