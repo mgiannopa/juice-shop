@@ -13,8 +13,8 @@ import config from 'config'
 import { challenges } from '../data/datacache'
 
 import * as utils from '../lib/utils'
-const security = require('../lib/insecurity')
-const users = require('../data/datacache').users
+import security = require('../lib/insecurity')
+import users = require('../data/datacache').users
 
 // vuln-code-snippet start loginAdminChallenge loginBenderChallenge loginJimChallenge
 module.exports = function login () {

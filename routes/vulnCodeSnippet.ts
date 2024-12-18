@@ -10,7 +10,7 @@ import { getCodeChallenges } from '../lib/codingChallenges'
 import * as accuracy from '../lib/accuracy'
 import * as utils from '../lib/utils'
 
-const challengeUtils = require('../lib/challengeUtils')
+import challengeUtils = require('../lib/challengeUtils')
 
 interface SnippetRequestBody {
   challenge: string
@@ -20,8 +20,11 @@ interface VerdictRequestBody {
   selectedLines: number[]
   key: string
 }
+interface CustomError extends Error {
+  name: string
+}
 
-const setStatusCode = (error: any) => {
+const setStatusCode = (error: CustomError) => {
   switch (error.name) {
     case 'BrokenBoundary':
       return 422
