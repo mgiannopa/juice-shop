@@ -4,11 +4,12 @@
  */
 
 import challengeUtils = require('../lib/challengeUtils')
-import { type Request, type Response, type NextFunction } from 'express'
+import { type Request, type Response} from 'express'
 import * as db from '../data/mongodb'
 import { challenges } from '../data/datacache'
 
-   security = require('../lib/insecurity')
+import security = require('../lib/insecurity')
+
 
 // vuln-code-snippet start noSqlReviewsChallenge forgedReviewChallenge
 module.exports = function productReviews () {
@@ -19,7 +20,7 @@ module.exports = function productReviews () {
       { $set: { message: req.body.message } },
       { multi: true } // vuln-code-snippet vuln-line noSqlReviewsChallenge
     ).then(
-      (result: { modified: number, original: Array<{ author: any }> }) => {
+      (result: { modified: number, original: Array<{ author: string }> }) => {
         challengeUtils.solveIf(challenges.noSqlReviewsChallenge, () => { return result.modified > 1 }) // vuln-code-snippet hide-line
         challengeUtils.solveIf(challenges.forgedReviewChallenge, () => { return user?.data && result.original[0] && result.original[0].author !== user.data.email && result.modified === 1 }) // vuln-code-snippet hide-line
         res.json(result)
