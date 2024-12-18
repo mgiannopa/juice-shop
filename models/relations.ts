@@ -1,3 +1,4 @@
+import { type Sequelize } from 'sequelize/types'
 import { AddressModel } from './address'
 import { BasketModel } from './basket'
 import { BasketItemModel } from './basketitem'
@@ -17,7 +18,7 @@ import { WalletModel } from './wallet'
 
 import { makeKeyNonUpdatable } from '../lib/noUpdate'
 
-const relationsInit = () => {
+const relationsInit = (_sequelize: Sequelize) => {
   AddressModel.belongsTo(UserModel, {
     constraints: true,
     foreignKeyConstraint: true,
