@@ -14,10 +14,10 @@ export default defineConfig({
     downloadsFolder: 'test/cypress/downloads',
     fixturesFolder: false,
     supportFile: 'test/cypress/support/e2e.ts',
-    setupNodeEvents (on: Cypress.PluginEvents) {
-      on('before:browser:launch', (browser: Cypress.Browser = {}, launchOptions: Cypress.BrowserLaunchOptions) => { // TODO Remove after upgrade to Cypress >=12.5.0 <or> Chrome 119 become available on GitHub Workflows, see https://github.com/cypress-io/cypress-documentation/issues/5479
+    setupNodeEvents (on: any) {
+      on('before:browser:launch', (browser: any = {}, launchOptions: any) => { // TODO Remove after upgrade to Cypress >=12.5.0 <or> Chrome 119 become available on GitHub Workflows, see https://github.com/cypress-io/cypress-documentation/issues/5479
         if (browser.name === 'chrome' && browser.isHeadless) {
-          launchOptions.args = launchOptions.args.map((arg: string  ) => {
+          launchOptions.args = launchOptions.args.map((arg: any) => {
             if (arg === '--headless') {
               return '--headless=new'
             }
@@ -46,7 +46,7 @@ export default defineConfig({
           )[0]
         },
         GetCouponIntent () {
-          import trainingData = require(`data/chatbot/${utils.extractFilename(
+          const trainingData = require(`data/chatbot/${utils.extractFilename(
             config.get('application.chatBot.trainingData')
           )}`)
           const couponIntent = trainingData.data.filter(
@@ -55,7 +55,7 @@ export default defineConfig({
           return couponIntent
         },
         GetFromMemories (property: string) {
-          for (const memory of config.get<MemoryConfig[]>('memories')) {
+          for (const memory of config.get<MemoryConfig[]>('memories') as any) {
             if (memory[property]) {
               return memory[property]
             }
