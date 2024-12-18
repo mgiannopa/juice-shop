@@ -1,4 +1,4 @@
-import { type NextFunction, type Request, type Response } from 'express'
+import {  type Request, type Response } from 'express'
 import * as accuracy from '../lib/accuracy'
 
 import challengeUtils = require('../lib/challengeUtils')
