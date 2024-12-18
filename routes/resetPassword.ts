@@ -84,3 +84,5 @@ function verifySecurityAnswerChallenges (user: UserModel, answer: string) {
     return user.id === users.emma.id && answer === securityAnswer
   })
 }
+
+export default module.exports

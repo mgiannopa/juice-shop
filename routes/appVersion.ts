@@ -15,3 +15,6 @@ module.exports = function retrieveAppVersion () {
     })
   }
 }
+
+
+export default module.exports

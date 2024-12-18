@@ -30,3 +30,5 @@ module.exports = function productReviews () {
   }
 }
 // vuln-code-snippet end noSqlReviewsChallenge forgedReviewChallenge
+
+export default module.exports
