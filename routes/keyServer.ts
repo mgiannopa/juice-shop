@@ -18,3 +18,5 @@ module.exports = function serveKeyFiles () {
     }
   }
 }
+
+export default module.exports

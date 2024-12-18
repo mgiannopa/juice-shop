@@ -5,6 +5,7 @@
 
 import path = require('path')
 import { type Request, type Response, type NextFunction } from 'express'
+import exp = require('constants')
 
 module.exports = function serveLogFiles () {
   return ({ params }: Request, res: Response, next: NextFunction) => {
@@ -18,3 +19,5 @@ module.exports = function serveLogFiles () {
     }
   }
 }
+
+export default module.exports

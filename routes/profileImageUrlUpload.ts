@@ -11,6 +11,7 @@ import { UserModel } from '../models/user'
 import * as utils from '../lib/utils'
 import security = require('../lib/insecurity')
 import request = require('request')
+import exp = require('constants')
 
 module.exports = function profileImageUrlUpload () {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -40,3 +41,5 @@ module.exports = function profileImageUrlUpload () {
     res.redirect(process.env.BASE_PATH + '/profile')
   }
 }
+
+export default module.exports

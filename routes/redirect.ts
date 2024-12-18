@@ -23,6 +23,7 @@ module.exports = function performRedirect () {
     }
   }
 }
+export default module.exports
 
 function isUnintendedRedirect (toUrl: string) {
   let unintended = true
